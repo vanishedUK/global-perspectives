@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Header } from './common/Header';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
-export const News = () => {
+export const AllNews = () => {
   const [news, setNews] = useState([]);
-  const location = useLocation();
-  const category = new URLSearchParams(location.search).get('category');
   const apiKey = 'pub_22243b7cbe37145aae55912a7c066705365fa';
-  const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
 
   useEffect(() => {
     const fetchNews = async () => {
       const response = await fetch(
-        `https://newsdata.io/api/1/news?apikey=${apiKey}&q=${category}&language=en`
+        `https://newsdata.io/api/1/news?apikey=${apiKey}&category=science,politics,top,food,environment&language=en`
       );
       const data = await response.json();
 
@@ -42,14 +37,11 @@ export const News = () => {
     };
 
     fetchNews();
-  }, [category]);
+  }, []);
 
   return (
     <div>
-      <Header />
-
       <Container>
-        <h1>{categoryName}</h1>
         <Row className="mt-3">{news}</Row>
       </Container>
     </div>

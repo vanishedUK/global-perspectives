@@ -1,19 +1,24 @@
-import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import Header from "../components/Header";
+import React from 'react';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import Header from '../components/common/Header';
+import { AllNews } from '../components/HomePage';
+import Footer from '../components/common/Footer';
 
 export const Home = () => {
   return (
     <div datatest-id="app">
+      {/* header componenet */}
       <Header />
-      <Container>
+
+      {/* container for introduction card */}
+      <Container className="mt-3">
         <Row>
           <Col md={12}>
             <Card>
+              <Card.Header as="h5">
+                Welcome to the Global Perspectives
+              </Card.Header>
               <Card.Body>
-                <Card.Title>
-                  <h1>Home</h1>
-                </Card.Title>
                 <Card.Text>
                   Experience global news like never before at Global
                   Perspectives, your trusted source for diverse insights. With
@@ -27,6 +32,11 @@ export const Home = () => {
           </Col>
         </Row>
       </Container>
+
+      {/*  */}
+      <AllNews />
+
+      <Footer />
     </div>
   );
 };
